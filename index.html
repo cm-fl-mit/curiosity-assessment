@@ -358,27 +358,14 @@
 
     <script>// CONFIGURATION - Replace with actual data
 
-        const slices = [
-            {
-                id: 1,
-                context: "Maya: Hey everyone, did anyone actually understand what Ms. Johnson was talking about in class today? The whole graph theory thing confused me a bit.",
-                text: "Alex: Yeah, I think it's pretty cool actually. It's like using dots and lines to solve real problems.\n\nJordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?"
-            },
-            {
-                id: 2,
-                context: "Jordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?",
-                text: "Maya: Exactly, that's what confused me. She kept drawing these circles and lines connecting them, but called them \"vertices\" and \"edges\" instead of just points and lines.\n\nAlex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?"
-            },
-            {
-                id: 3,
-                context: "Alex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?",
-                text: "Alex: Like, um... think of a social network. Each person is a vertex, and if two people are friends, there's an edge between them.\n\nTaylor: Oh! Kind of like Instagram - where people are the nodes and following someone creates an edge?\n\nMaya: That makes more sense. So it's not about plotting functions like we usually do in math class."
-            }
-            // Add more slices here from your transcript
-        ];
+        const TOTAL_SLICES_TO_SHOW = 3; // Adjust based on your needs
+        const USE_RANDOM_SELECTION = true;
+        const BALANCE_SELECTION_LOAD = true; // Use load balancing
 
         // Global variables
+        let slices = []; // Will be loaded from JSON
         let currentSliceIndex = 0;
+        let selectedSliceIndices = [];
         const responses = [];
         let participantId = getParticipantId();
 
@@ -388,10 +375,92 @@
             return urlParams.get('PROLIFIC_PID') || 'TEST_' + Math.random().toString(36).substring(2, 10);
         }
 
+        // Load slices from external file
+        async function loadSlicesFromFile() {
+            try {
+                const response = await fetch('conversation_slices.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                slices = data.slices;
+                console.log(`Loaded ${slices.length} slices from file`);
+
+                // Initialize the study after slices are loaded
+                initializeSliceSelection();
+                loadSlice(currentSliceIndex);
+            } catch (error) {
+                console.error('Error loading slices:', error);
+                document.getElementById('sliceContainer').innerHTML =
+                    `<div class="error">Error loading conversation data. Please refresh the page or contact the researcher.</div>`;
+            }
+        }
+
+        // Initialize slice selection with load balancing
+        function initializeSliceSelection() {
+            if (USE_RANDOM_SELECTION) {
+                if (BALANCE_SELECTION_LOAD) {
+                    // Try to load existing selection counts
+                    let selectionCounts;
+                    try {
+                        selectionCounts = JSON.parse(localStorage.getItem('mosaic_selection_counts') || '{}');
+                    } catch (e) {
+                        selectionCounts = {};
+                    }
+
+                    // Initialize counts for any new slices
+                    slices.forEach((slice, index) => {
+                        if (typeof selectionCounts[index] === 'undefined') {
+                            selectionCounts[index] = 0;
+                        }
+                    });
+
+                    // Create array of indices sorted by selection count (least selected first)
+                    const sortedIndices = Object.keys(selectionCounts)
+                        .map(Number)
+                        .filter(index => index < slices.length) // Only consider valid indices
+                        .sort((a, b) => selectionCounts[a] - selectionCounts[b]);
+
+                    // Take the first N slices with lowest selection counts
+                    selectedSliceIndices = sortedIndices.slice(0, Math.min(TOTAL_SLICES_TO_SHOW, slices.length));
+
+                    // Randomize order of presentation
+                    selectedSliceIndices.sort(() => Math.random() - 0.5);
+
+                    // Update selection counts
+                    selectedSliceIndices.forEach(index => {
+                        selectionCounts[index]++;
+                    });
+
+                    // Save updated counts
+                    localStorage.setItem('mosaic_selection_counts', JSON.stringify(selectionCounts));
+                } else {
+                    // Simple random selection
+                    const allIndices = Array.from({ length: slices.length }, (_, i) => i);
+                    selectedSliceIndices = [];
+                    const numToSelect = Math.min(TOTAL_SLICES_TO_SHOW, slices.length);
+
+                    for (let i = 0; i < numToSelect; i++) {
+                        const randomIndex = Math.floor(Math.random() * allIndices.length);
+                        selectedSliceIndices.push(allIndices[randomIndex]);
+                        allIndices.splice(randomIndex, 1); // Remove to avoid duplication
+                    }
+                }
+            } else {
+                // Sequential selection
+                selectedSliceIndices = Array.from(
+                    { length: Math.min(TOTAL_SLICES_TO_SHOW, slices.length) },
+                    (_, i) => i
+                );
+            }
+
+            console.log("Selected slice indices:", selectedSliceIndices);
+        }
+
         // Initialize the interface
         document.addEventListener('DOMContentLoaded', function () {
             initializeEventListeners();
-            loadSlice(currentSliceIndex);
+            loadSlicesFromFile();
         });
 
         // Set up all event listeners
@@ -538,6 +607,7 @@
         }
 
         // Save current responses and load next slice
+        // Update saveAndNext to include the actual slice ID
         function saveAndNext() {
             // Get form data
             const presence = document.querySelector('input[name="presence"]:checked').value;
@@ -553,9 +623,13 @@
             const patterns = Array.from(document.querySelectorAll('input[name="patterns"]:checked'))
                 .map(checkbox => checkbox.value);
 
-            // Save response
+            // Get the actual slice using the selected index
+            const sliceIndex = selectedSliceIndices[currentSliceIndex];
+            const slice = slices[sliceIndex];
+
+            // Save response with actual slice ID
             responses.push({
-                slice_id: slices[currentSliceIndex].id,
+                slice_id: slice.id, // Use the actual ID from the JSON
                 timestamp: new Date().toISOString(),
                 participant_id: participantId,
                 presence: presence,
@@ -566,7 +640,7 @@
 
             // Move to next slice or complete study
             currentSliceIndex++;
-            if (currentSliceIndex < slices.length) {
+            if (currentSliceIndex < selectedSliceIndices.length) {
                 loadSlice(currentSliceIndex);
             } else {
                 completeStudy();
