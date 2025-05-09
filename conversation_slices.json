@@ -1,0 +1,54 @@
+﻿{
+    "slices": [
+        {
+            "id": 1,
+            "context": "Maya: Hey everyone, did anyone actually understand what Ms. Johnson was talking about in class today? The whole graph theory thing confused me a bit.",
+            "text": "Alex: Yeah, I think it's pretty cool actually. It's like using dots and lines to solve real problems.\n\nJordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?"
+        },
+        {
+            "id": 2,
+            "context": "Alex: Yeah, I think it's pretty cool actually. It's like using dots and lines to solve real problems.\n\nJordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?",
+            "text": "Maya: Exactly, that's what confused me. She kept drawing these circles and lines connecting them, but called them \"vertices\" and \"edges\" instead of just points and lines.\n\nAlex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?"
+        },
+        {
+            "id": 3,
+            "context": "Maya: Exactly, that's what confused me. She kept drawing these circles and lines connecting them, but called them \"vertices\" and \"edges\" instead of just points and lines.\n\nAlex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?",
+            "text": "Alex: Like, um... think of a social network. Each person is a vertex, and if two people are friends, there's an edge between them.\n\nTaylor: Oh! Kind of like Instagram - where people are the nodes and following someone creates an edge?\n\nMaya: That makes more sense. So it's not about plotting functions like we usually do in math class."
+        },
+        {
+            "id": 4,
+            "context": "Alex: Like, um... think of a social network. Each person is a vertex, and if two people are friends, there's an edge between them.\n\nTaylor: Oh! Kind of like Instagram - where people are the nodes and following someone creates an edge?\n\nMaya: That makes more sense. So it's not about plotting functions like we usually do in math class.",
+            "text": "Jordan: So what was that example Ms. Johnson showed with the bridges? Something about crossing every bridge exactly once?\n\nAlex: The Königsberg Bridge problem! That's actually what started graph theory. There was this city with seven bridges, and people wondered if you could walk through the city crossing each bridge exactly once.\n\nMaya: And could you?"
+        },
+        {
+            "id": 5,
+            "context": "Jordan: So what was that example Ms. Johnson showed with the bridges? Something about crossing every bridge exactly once?\n\nAlex: The Königsberg Bridge problem! That's actually what started graph theory. There was this city with seven bridges, and people wondered if you could walk through the city crossing each bridge exactly once.\n\nMaya: And could you?",
+            "text": "Alex: No, that's the thing. Euler proved it was impossible, and he used graphs to do it!\n\nTaylor: Wait, how do bridges become a graph?\n\nAlex: You treat the landmasses as vertices and the bridges as edges. Then it becomes a question about whether you can trace through the graph without lifting your pencil and without retracing any edge."
+        },
+        {
+            "id": 6,
+            "context": "Alex: No, that's the thing. Euler proved it was impossible, and he used graphs to do it!\n\nTaylor: Wait, how do bridges become a graph?\n\nAlex: You treat the landmasses as vertices and the bridges as edges. Then it becomes a question about whether you can trace through the graph without lifting your pencil and without retracing any edge.",
+            "text": "Jordan: I'm still confused. Why was it impossible?\n\nMaya: Yeah, that doesn't make sense. If there are paths connecting everything, why can't you just go through each one?\n\nAlex: I think it had something to do with the number of edges connected to each vertex. Ms. Johnson called it the \"degree\" of the vertex."
+        },
+        {
+            "id": 7,
+            "context": "Jordan: I'm still confused. Why was it impossible?\n\nMaya: Yeah, that doesn't make sense. If there are paths connecting everything, why can't you just go through each one?\n\nAlex: I think it had something to do with the number of edges connected to each vertex. Ms. Johnson called it the \"degree\" of the vertex.",
+            "text": "Taylor: Oh right! She said something about even and odd degrees. Like if a vertex has an odd number of edges, it has to be either the starting point or ending point of your path.\n\nMaya: So if there are more than two vertices with odd degrees, you can't do it?\n\nAlex: Exactly! In the Königsberg problem, all four landmasses had an odd number of bridges connected to them."
+        },
+        {
+            "id": 8,
+            "context": "Taylor: Oh right! She said something about even and odd degrees. Like if a vertex has an odd number of edges, it has to be either the starting point or ending point of your path.\n\nMaya: So if there are more than two vertices with odd degrees, you can't do it?\n\nAlex: Exactly! In the Königsberg problem, all four landmasses had an odd number of bridges connected to them.",
+            "text": "Jordan: Hold up. I need to draw this out to understand it.\n\nJordan: Okay, so I'm drawing the four land areas as dots... and the seven bridges as lines between them...\n\nTaylor: Let me see... oh, I get it now. This vertex has 3 edges, this one has 3, this one has 3, and this one has 5."
+        },
+        {
+            "id": 9,
+            "context": "Jordan: Hold up. I need to draw this out to understand it.\n\nJordan: Okay, so I'm drawing the four land areas as dots... and the seven bridges as lines between them...\n\nTaylor: Let me see... oh, I get it now. This vertex has 3 edges, this one has 3, this one has 3, and this one has 5.",
+            "text": "Maya: And they're all odd numbers! So you'd need more than one starting and ending point, which isn't possible if you're doing one continuous path.\n\nAlex: Right! Euler figured this out in 1736. That's what's cool about graph theory - it can prove something's impossible.\n\nJordan: So when would it be possible to cross every edge exactly once?"
+        },
+        {
+            "id": 10,
+            "context": "Maya: And they're all odd numbers! So you'd need more than one starting and ending point, which isn't possible if you're doing one continuous path.\n\nAlex: Right! Euler figured this out in 1736. That's what's cool about graph theory - it can prove something's impossible.\n\nJordan: So when would it be possible to cross every edge exactly once?",
+            "text": "Alex: When there are either zero or exactly two vertices with odd degrees. If there are zero, you can start anywhere and end up in the same place. If there are two, you have to start at one of them and end at the other.\n\nTaylor: That makes sense. But what about that other problem with the houses and utilities?\n\nMaya: Oh, the one with three houses and three utilities, and we need to connect each house to each utility?"
+        }
+    ]
+}
