@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoSAIC Conversation Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .progress {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .slice-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .context {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-style: italic;
+            margin-bottom: 15px;
+            border-left: 4px solid #ccc;
+        }
+
+        .focus-segment {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .speaker {
+            font-weight: bold;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        .question-container {
+            margin: 25px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            background-color: #f1f1f1;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+            .radio-option:hover {
+                background-color: #e0e0e0;
+            }
+
+            .radio-option.selected {
+                background-color: #2196F3;
+                color: white;
+            }
+
+            .radio-option input {
+                display: none;
+            }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
+            button:disabled {
+                background-color: #cccccc;
+                cursor: not-allowed;
+            }
+
+        .definitions {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .definition-item {
+            margin-bottom: 10px;
+        }
+
+        .term {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .example {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 3px;
+        }
+
+        #completion {
+            text-align: center;
+            padding: 30px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .completion-code {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 2px dashed #4CAF50;
+            display: inline-block;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .instructions {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+            .checkbox-group div {
+                margin: 8px 0;
+            }
+
+        #statusMessage {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        #testButton {
+            background-color: #6c757d;
+            margin-top: 10px;
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversation Analysis Study</h1>
+
+    <div id="studyContainer">
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <p>You'll be analyzing slices of conversation to identify different types of curiosity. For each section:</p>
+            <ol>
+                <li>Read the conversation segment carefully</li>
+                <li>Determine if curiosity is present</li>
+                <li>If present, identify the type and intensity of curiosity</li>
+                <li>Answer additional questions about interaction patterns</li>
+            </ol>
+            <p>Please take your time and provide thoughtful responses. Your careful analysis is important to our research.</p>
+        </div>
+
+        <div class="definitions">
+            <h3>Curiosity Types</h3>
+
+            <div class="definition-item">
+                <div class="term">Specific Curiosity:</div>
+                <div>Targeted questions seeking direct answers to close a specific knowledge gap</div>
+                <div class="example">Examples: "What is this called?", "Who invented it?", "When did it happen?"</div>
+            </div>
+
+            <div class="definition-item">
+                <div class="term">Diversive Curiosity:</div>
+                <div>Broad exploration of new topics, stimulated by novelty or variety</div>
+                <div class="example">Examples: "I wonder what else we could try", "What if we...", "Let's explore..."</div>
+            </div>
+
+            <div class="definition-item">
+                <div class="term">Epistemic Curiosity:</div>
+                <div>Deep engagement with existing knowledge, seeking understanding of concepts or causes</div>
+                <div class="example">Examples: "Why does this happen?", "How does it work?", "What's the theory behind this?"</div>
+            </div>
+
+            <div class="definition-item">
+                <div class="term">Social Curiosity:</div>
+                <div>Interest in others' thoughts, feelings, or perspectives</div>
+                <div class="example">Examples: "What do you think?", "How would you approach this?", "What's your perspective?"</div>
+            </div>
+
+            <div class="definition-item">
+                <div class="term">Perceptual Curiosity:</div>
+                <div>Sensory or observational interest in physical properties or appearances</div>
+                <div class="example">Examples: "Look at this!", "Did you notice how it...", "I observe that..."</div>
+            </div>
+        </div>
+
+        <div class="progress">
+            <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+        </div>
+
+        <div id="sliceContainer" class="slice-container">
+            <!-- Slice content will be loaded here -->
+        </div>
+
+        <div id="questionContainer" class="question-container">
+            <div class="question">
+                <h3>Is curiosity present in this conversation segment?</h3>
+                <div class="radio-group" id="curiosityPresence">
+                    <label class="radio-option">
+                        <input type="radio" name="presence" value="yes">
+                        Yes
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="presence" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="question" id="curiosityTypeQuestion" style="display: none;">
+                <h3>Which type of curiosity is most prominent?</h3>
+                <div class="radio-group" id="curiosityType">
+                    <label class="radio-option">
+                        <input type="radio" name="type" value="specific">
+                        Specific
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="type" value="diversive">
+                        Diversive
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="type" value="epistemic">
+                        Epistemic
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="type" value="social">
+                        Social
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="type" value="perceptual">
+                        Perceptual
+                    </label>
+                </div>
+            </div>
+
+            <div class="question" id="curiosityIntensityQuestion" style="display: none;">
+                <h3>How intense is the curiosity?</h3>
+                <div class="radio-group" id="curiosityIntensity">
+                    <label class="radio-option">
+                        <input type="radio" name="intensity" value="0">
+                        0 - Low
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="intensity" value="1">
+                        1 - Medium
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="intensity" value="2">
+                        2 - High
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Which interaction patterns are present? (Select all that apply)</h3>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="pattern-agreement" name="patterns" value="agreement">
+                        <label for="pattern-agreement">Agreement/Consensus</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pattern-challenge" name="patterns" value="challenge">
+                        <label for="pattern-challenge">Challenge/Disagreement</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pattern-idea" name="patterns" value="idea">
+                        <label for="pattern-idea">New Idea Generation</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="pattern-question" name="patterns" value="question">
+                        <label for="pattern-question">Question Asking</label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="nextButton" disabled>Next Segment</button>
+        </div>
+    </div>
+
+    <div id="completion">
+        <h2>Thank you for completing the study!</h2>
+        <p>Your responses have been recorded.</p>
+        <p>Your completion code is:</p>
+        <div class="completion-code" id="completionCodeDisplay"></div>
+        <p>Please copy this code and paste it back into Prolific to receive credit for this study.</p>
+        <div id="statusMessage"></div>
+    </div>
+
+    <script>// CONFIGURATION - Replace with your actual data and Google Apps Script URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/media.mit.edu/s/AKfycbwtE_STQN7JP-y-fPaOYCyVjI84XXBeKe-z1rTfyIWRyxeS3UeCHw_HWYuRUxA63oaL4Q/exec'; // Replace with your actual script URL
+
+        const slices = [
+            {
+                id: 1,
+                context: "Maya: Hey everyone, did anyone actually understand what Ms. Johnson was talking about in class today? The whole graph theory thing confused me a bit.",
+                text: "Alex: Yeah, I think it's pretty cool actually. It's like using dots and lines to solve real problems.\n\nJordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?"
+            },
+            {
+                id: 2,
+                context: "Jordan: Wait, aren't graphs supposed to be like charts and stuff? With x and y axes?\n\nTaylor: That's what I thought too! But I think these are different. They're like... networks?",
+                text: "Maya: Exactly, that's what confused me. She kept drawing these circles and lines connecting them, but called them \"vertices\" and \"edges\" instead of just points and lines.\n\nAlex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?"
+            },
+            {
+                id: 3,
+                context: "Alex: Right, so in graph theory, those circles are called vertices or nodes, and the lines connecting them are edges. It's basically a way to represent relationships between things.\n\nJordan: Relationships? Like how?",
+                text: "Alex: Like, um... think of a social network. Each person is a vertex, and if two people are friends, there's an edge between them.\n\nTaylor: Oh! Kind of like Instagram - where people are the nodes and following someone creates an edge?\n\nMaya: That makes more sense. So it's not about plotting functions like we usually do in math class."
+            }
+            // Add more slices here from your transcript
+        ];
+
+        // Global variables
+        let currentSliceIndex = 0;
+        const responses = [];
+        let participantId = getParticipantId();
+
+        // Get Prolific ID from URL parameters or generate a random one for testing
+        function getParticipantId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('PROLIFIC_PID') || 'TEST_' + Math.random().toString(36).substring(2, 10);
+        }
+
+        // Initialize the interface
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeEventListeners();
+            loadSlice(currentSliceIndex);
+        });
+
+        // Set up all event listeners
+        function initializeEventListeners() {
+            // Set up radio button click behavior
+            document.querySelectorAll('.radio-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    // Find the parent group
+                    const groupName = this.querySelector('input').name;
+
+                    // Remove selected class from all options in this group
+                    document.querySelectorAll(`.radio-option input[name="${groupName}"]`).forEach(input => {
+                        input.parentElement.classList.remove('selected');
+                    });
+
+                    // Add selected class to this option
+                    this.classList.add('selected');
+
+                    // Check the radio button
+                    this.querySelector('input').checked = true;
+
+                    // Show/hide dependent questions
+                    if (groupName === 'presence') {
+                        const showFollowUp = this.querySelector('input').value === 'yes';
+                        document.getElementById('curiosityTypeQuestion').style.display = showFollowUp ? 'block' : 'none';
+                        document.getElementById('curiosityIntensityQuestion').style.display = showFollowUp ? 'block' : 'none';
+
+                        // If hiding questions, clear their values to avoid validation confusion
+                        if (!showFollowUp) {
+                            document.querySelectorAll('input[name="type"], input[name="intensity"]').forEach(input => {
+                                input.checked = false;
+                                if (input.parentElement.classList.contains('radio-option')) {
+                                    input.parentElement.classList.remove('selected');
+                                }
+                            });
+                        }
+                    }
+
+                    validateForm();
+                });
+            });
+
+            // Set up checkbox change behavior
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    validateForm();
+                });
+            });
+
+            // Set up next button
+            document.getElementById('nextButton').addEventListener('click', saveAndNext);
+        }
+
+        // Load a specific slice
+        function loadSlice(index) {
+            // Update progress bar
+            const progress = ((index + 1) / slices.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            const slice = slices[index];
+            let html = '';
+
+            if (slice.context) {
+                html += `<div class="context">
+                                <strong>CONTEXT:</strong><br>
+                                ${formatConversation(slice.context)}
+                             </div>`;
+            }
+
+            html += `<div class="focus-segment">
+                            <strong>RATE THIS SEGMENT:</strong><br>
+                            ${formatConversation(slice.text)}
+                         </div>`;
+
+            document.getElementById('sliceContainer').innerHTML = html;
+
+            // Reset form for this slice
+            resetForm();
+        }
+
+        // Format conversation text with speaker highlights
+        function formatConversation(text) {
+            // Split into lines and format each speaker's turn
+            return text.split('\n\n').map(turn => {
+                const colonIndex = turn.indexOf(':');
+                if (colonIndex > 0) {
+                    const speaker = turn.substring(0, colonIndex);
+                    const utterance = turn.substring(colonIndex + 1);
+                    return `<span class="speaker">${speaker}:</span>${utterance}`;
+                }
+                return turn;
+            }).join('<br><br>');
+        }
+
+        // Reset the form for a new slice
+        function resetForm() {
+            // Uncheck all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+                input.parentElement.classList.remove('selected');
+            });
+
+            // Uncheck all checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Hide conditional questions
+            document.getElementById('curiosityTypeQuestion').style.display = 'none';
+            document.getElementById('curiosityIntensityQuestion').style.display = 'none';
+
+            // Disable next button until required fields are filled
+            document.getElementById('nextButton').disabled = true;
+        }
+
+        // Validate form to enable/disable next button - FIXED VERSION
+        function validateForm() {
+            const presenceRadio = document.querySelector('input[name="presence"]:checked');
+            let isValid = true;
+
+            // Check if presence is selected
+            if (!presenceRadio) {
+                isValid = false;
+            } else if (presenceRadio.value === 'yes') {
+                // If presence is "yes", also check type and intensity
+                const typeRadio = document.querySelector('input[name="type"]:checked');
+                const intensityRadio = document.querySelector('input[name="intensity"]:checked');
+
+                if (!typeRadio || !intensityRadio) {
+                    isValid = false;
+                }
+            }
+
+            // Check that at least one pattern is selected
+            const patternChecked = document.querySelector('input[name="patterns"]:checked');
+            if (!patternChecked) {
+                isValid = false;
+            }
+
+            // Enable/disable button based on validation result
+            document.getElementById('nextButton').disabled = !isValid;
+
+            return isValid;
+        }
+
+        // Save current responses and load next slice
+        function saveAndNext() {
+            // Get form data
+            const presence = document.querySelector('input[name="presence"]:checked').value;
+
+            let type = null;
+            let intensity = null;
+            if (presence === 'yes') {
+                type = document.querySelector('input[name="type"]:checked').value;
+                intensity = document.querySelector('input[name="intensity"]:checked').value;
+            }
+
+            // Get selected patterns
+            const patterns = Array.from(document.querySelectorAll('input[name="patterns"]:checked'))
+                .map(checkbox => checkbox.value);
+
+            // Save response
+            responses.push({
+                slice_id: slices[currentSliceIndex].id,
+                timestamp: new Date().toISOString(),
+                participant_id: participantId,
+                presence: presence,
+                type: type,
+                intensity: intensity,
+                patterns: patterns
+            });
+
+            // Move to next slice or complete study
+            currentSliceIndex++;
+            if (currentSliceIndex < slices.length) {
+                loadSlice(currentSliceIndex);
+            } else {
+                completeStudy();
+            }
+        }
+
+        // Generate completion code
+        function generateCompletionCode() {
+            // Use Prolific ID to create a deterministic but unique code
+            let hash = 0;
+            for (let i = 0; i < participantId.length; i++) {
+                hash = ((hash << 5) - hash) + participantId.charCodeAt(i);
+                hash = hash & hash; // Convert to 32bit integer
+            }
+
+            // Use absolute value and mod to get a 4-digit number
+            const numericPart = Math.abs(hash % 10000).toString().padStart(4, '0');
+
+            return `MOSAIC${numericPart}`;
+        }
+
+        // Complete the study and show completion code
+        function completeStudy() {
+            // Generate completion code
+            const completionCode = generateCompletionCode();
+
+            // Add completion code to responses
+            const finalData = {
+                participant_id: participantId,
+                completion_time: new Date().toISOString(),
+                completion_code: completionCode,
+                responses: responses
+            };
+
+            // Save to localStorage as backup
+            localStorage.setItem(`mosaic_responses_${participantId}`, JSON.stringify(finalData));
+
+            // Show completion screen right away (don't wait for server response)
+            document.getElementById('studyContainer').style.display = 'none';
+            document.getElementById('completionCodeDisplay').textContent = completionCode;
+            document.getElementById('completion').style.display = 'block';
+
+            // Only attempt to send to server if URL is configured
+            if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+                // Show sending status
+                const statusMessage = document.getElementById('statusMessage');
+                statusMessage.textContent = "Sending your responses to our server...";
+                statusMessage.className = "";
+                statusMessage.style.display = 'block';
+
+                // Log what we're sending
+                console.log("Sending data to server:", finalData);
+
+                // Send data to Google Apps Script
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(finalData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        console.log("Response received:", response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Server response:", data);
+
+                        // Show success message
+                        statusMessage.textContent = "✓ Your responses have been successfully recorded.";
+                        statusMessage.className = "success";
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+
+                        // Show error message
+                        statusMessage.textContent = "⚠️ There was an issue submitting your responses to our server, but your completion code is still valid.";
+                        statusMessage.className = "error";
+
+                        // Add a test button for debugging
+                        const testButton = document.createElement('button');
+                        testButton.textContent = "Test Server Connection";
+                        testButton.id = "testButton";
+                        testButton.onclick = testServerConnection;
+                        document.getElementById('completion').appendChild(testButton);
+                    });
+            } else {
+                console.log("No server URL configured. Data saved to localStorage only:", finalData);
+
+                // Show local storage message
+                const statusMessage = document.getElementById('statusMessage');
+                statusMessage.textContent = "Responses saved locally. (No server URL configured)";
+                statusMessage.style.display = 'block';
+            }
+        }
+
+        // Test server connection (for debugging)
+        function testServerConnection() {
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+                alert("No server URL configured. Please set the GOOGLE_SCRIPT_URL variable.");
+                return;
+            }
+
+            const testData = {
+                participant_id: "TEST_USER",
+                completion_time: new Date().toISOString(),
+                completion_code: "TEST123",
+                responses: [{
+                    slice_id: 1,
+                    timestamp: new Date().toISOString(),
+                    presence: "yes",
+                    type: "epistemic",
+                    intensity: "2",
+                    patterns: ["question", "challenge"]
+                }]
+            };
+
+            console.log("Sending test data to server:", testData);
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(testData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log("Test response received:", response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Test success:', data);
+                    alert('Test successful! Check your spreadsheet for a test entry.');
+                })
+                .catch(error => {
+                    console.error('Test error:', error);
+                    alert('Test failed. See console for details.');
+                });
+        }</script>
+</body>
+</html>
