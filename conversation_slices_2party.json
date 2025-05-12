@@ -1,0 +1,214 @@
+{
+  "slices": [
+    {
+      "id": 1,
+      "context": "Jess: Okay, so for our food web graph, I've started drawing some of the animals and plants. I've got trees, grass, rabbits, and deer so far.",
+      "text": "Jess: Okay, so for our food web graph, I've started drawing some of the animals and plants. I've got trees, grass, rabbits, and deer so far.\n\nAndy: Cool. So we need to add the predators next, right? Like wolves and foxes?\n\nJess: Yeah. And hawks too. I'm trying to figure out the best way to arrange everything on the page.\n\nAndy: Maybe put the plants at the bottom, herbivores in the middle, and predators at the top?\n\nJess: That makes sense. I'm trying to remember how to show the relationships though. The arrows go from the predator to the prey, or the other way around?",
+      "phase": null
+    },
+    {
+      "id": 2,
+      "context": "Jess: Okay, so for our food web graph, I've started drawing some of the animals and plants. I've got trees, grass, rabbits, and deer so far.\n\nAndy: Cool. So we need to add the predators next, right? Like wolves and foxes?",
+      "text": "Jess: Yeah. And hawks too. I'm trying to figure out the best way to arrange everything on the page.\n\nAndy: Maybe put the plants at the bottom, herbivores in the middle, and predators at the top?\n\nJess: That makes sense. I'm trying to remember how to show the relationships though. The arrows go from the predator to the prey, or the other way around?\n\nAndy: Hmm, I think... Wait, I'm not sure now. Let me check the slides again.\n\nAndy: So according to the slides, for a directed graph, the arrow points from one vertex to another. So for a food web, it would be predator to prey, right?",
+      "phase": null
+    },
+    {
+      "id": 3,
+      "context": "Jess: Yeah. And hawks too. I'm trying to figure out the best way to arrange everything on the page.\n\nAndy: Maybe put the plants at the bottom, herbivores in the middle, and predators at the top?",
+      "text": "Jess: That makes sense. I'm trying to remember how to show the relationships though. The arrows go from the predator to the prey, or the other way around?\n\nAndy: Hmm, I think... Wait, I'm not sure now. Let me check the slides again.\n\nAndy: So according to the slides, for a directed graph, the arrow points from one vertex to another. So for a food web, it would be predator to prey, right?\n\nJess: No, I think it's the other way around. The arrow should go from prey to predator to show the energy flow in the ecosystem.\n\nAndy: That doesn't make sense though. Then we'd have arrows pointing from grass to deer, and deer to wolves. That's not how directed graphs work.",
+      "phase": null
+    },
+    {
+      "id": 4,
+      "context": "Jess: That makes sense. I'm trying to remember how to show the relationships though. The arrows go from the predator to the prey, or the other way around?\n\nAndy: Hmm, I think... Wait, I'm not sure now. Let me check the slides again.",
+      "text": "Andy: So according to the slides, for a directed graph, the arrow points from one vertex to another. So for a food web, it would be predator to prey, right?\n\nJess: No, I think it's the other way around. The arrow should go from prey to predator to show the energy flow in the ecosystem.\n\nAndy: That doesn't make sense though. Then we'd have arrows pointing from grass to deer, and deer to wolves. That's not how directed graphs work.\n\nJess: But in biology, the arrows always point in the direction of energy transfer. The plants get energy from the sun, then herbivores get energy from plants, and so on.\n\nAndy: Let me look it up... Okay, so it actually depends on what relationship we're showing. If we're showing \"eats,\" then it's predator → prey. If we're showing \"energy flows to,\" then it's prey → predator.",
+      "phase": null
+    },
+    {
+      "id": 5,
+      "context": "Andy: So according to the slides, for a directed graph, the arrow points from one vertex to another. So for a food web, it would be predator to prey, right?\n\nJess: No, I think it's the other way around. The arrow should go from prey to predator to show the energy flow in the ecosystem.",
+      "text": "Andy: That doesn't make sense though. Then we'd have arrows pointing from grass to deer, and deer to wolves. That's not how directed graphs work.\n\nJess: But in biology, the arrows always point in the direction of energy transfer. The plants get energy from the sun, then herbivores get energy from plants, and so on.\n\nAndy: Let me look it up... Okay, so it actually depends on what relationship we're showing. If we're showing \"eats,\" then it's predator → prey. If we're showing \"energy flows to,\" then it's prey → predator.\n\nJess: Oh, I see. Well, let's stick with the \"eats\" relationship since that's more standard for graph theory. So wolf → deer means wolf eats deer.\n\nAndy: Got it. So we'll have arrows going from predators to their prey.",
+      "phase": null
+    },
+    {
+      "id": 6,
+      "context": "Andy: That doesn't make sense though. Then we'd have arrows pointing from grass to deer, and deer to wolves. That's not how directed graphs work.\n\nJess: But in biology, the arrows always point in the direction of energy transfer. The plants get energy from the sun, then herbivores get energy from plants, and so on.",
+      "text": "Andy: Let me look it up... Okay, so it actually depends on what relationship we're showing. If we're showing \"eats,\" then it's predator → prey. If we're showing \"energy flows to,\" then it's prey → predator.\n\nJess: Oh, I see. Well, let's stick with the \"eats\" relationship since that's more standard for graph theory. So wolf → deer means wolf eats deer.\n\nAndy: Got it. So we'll have arrows going from predators to their prey.\n\nAndy: I'm still not sure how to set up this adjacency matrix. Can you help me understand it?\n\nJess: Sure. So we list all our animals and plants both across the top and down the side, in the same order.",
+      "phase": null
+    },
+    {
+      "id": 7,
+      "context": "Andy: Let me look it up... Okay, so it actually depends on what relationship we're showing. If we're showing \"eats,\" then it's predator → prey. If we're showing \"energy flows to,\" then it's prey → predator.\n\nJess: Oh, I see. Well, let's stick with the \"eats\" relationship since that's more standard for graph theory. So wolf → deer means wolf eats deer.",
+      "text": "Andy: Got it. So we'll have arrows going from predators to their prey.\n\nAndy: I'm still not sure how to set up this adjacency matrix. Can you help me understand it?\n\nJess: Sure. So we list all our animals and plants both across the top and down the side, in the same order.\n\nAndy: Okay, so like a grid with the same labels on both axes?\n\nJess: Yeah. Then we put a 1 in the cell if the row animal eats the column animal, and 0 otherwise.",
+      "phase": null
+    },
+    {
+      "id": 8,
+      "context": "Andy: Got it. So we'll have arrows going from predators to their prey.\n\nAndy: I'm still not sure how to set up this adjacency matrix. Can you help me understand it?",
+      "text": "Jess: Sure. So we list all our animals and plants both across the top and down the side, in the same order.\n\nAndy: Okay, so like a grid with the same labels on both axes?\n\nJess: Yeah. Then we put a 1 in the cell if the row animal eats the column animal, and 0 otherwise.\n\nAndy: Wait, I'm confused. If wolves eat deer, where does the 1 go?\n\nJess: The wolf row intersects with the deer column, so we put a 1 there.",
+      "phase": null
+    },
+    {
+      "id": 9,
+      "context": "Jess: Sure. So we list all our animals and plants both across the top and down the side, in the same order.\n\nAndy: Okay, so like a grid with the same labels on both axes?",
+      "text": "Jess: Yeah. Then we put a 1 in the cell if the row animal eats the column animal, and 0 otherwise.\n\nAndy: Wait, I'm confused. If wolves eat deer, where does the 1 go?\n\nJess: The wolf row intersects with the deer column, so we put a 1 there.\n\nAndy: No, that's not right. I think it's the other way around. The deer row and wolf column would get the 1.\n\nJess: Let me double-check... No, I'm pretty sure it's wolf row, deer column. Because each row represents the predator, and each column is the prey.",
+      "phase": null
+    },
+    {
+      "id": 10,
+      "context": "Jess: Yeah. Then we put a 1 in the cell if the row animal eats the column animal, and 0 otherwise.\n\nAndy: Wait, I'm confused. If wolves eat deer, where does the 1 go?",
+      "text": "Jess: The wolf row intersects with the deer column, so we put a 1 there.\n\nAndy: No, that's not right. I think it's the other way around. The deer row and wolf column would get the 1.\n\nJess: Let me double-check... No, I'm pretty sure it's wolf row, deer column. Because each row represents the predator, and each column is the prey.\n\nAndy: But that doesn't match with our arrows. If the arrow goes from wolf to deer, wouldn't the 1 go in the deer column?\n\nJess: That's what I'm saying. Wolf row, deer column gets a 1 because wolves eat deer.",
+      "phase": null
+    },
+    {
+      "id": 11,
+      "context": "Jess: The wolf row intersects with the deer column, so we put a 1 there.\n\nAndy: No, that's not right. I think it's the other way around. The deer row and wolf column would get the 1.",
+      "text": "Jess: Let me double-check... No, I'm pretty sure it's wolf row, deer column. Because each row represents the predator, and each column is the prey.\n\nAndy: But that doesn't match with our arrows. If the arrow goes from wolf to deer, wouldn't the 1 go in the deer column?\n\nJess: That's what I'm saying. Wolf row, deer column gets a 1 because wolves eat deer.\n\nAndy: Ohh, I see what you're saying now. I was thinking backwards.\n\nJess: So I started filling in the adjacency matrix. What should we do next?",
+      "phase": null
+    },
+    {
+      "id": 12,
+      "context": "Jess: Let me double-check... No, I'm pretty sure it's wolf row, deer column. Because each row represents the predator, and each column is the prey.\n\nAndy: But that doesn't match with our arrows. If the arrow goes from wolf to deer, wouldn't the 1 go in the deer column?",
+      "text": "Jess: That's what I'm saying. Wolf row, deer column gets a 1 because wolves eat deer.\n\nAndy: Ohh, I see what you're saying now. I was thinking backwards.\n\nJess: So I started filling in the adjacency matrix. What should we do next?\n\nAndy: I think we should try implementing one of those search algorithms. Maybe the breadth-first search to see how changes to one species would affect others?\n\nJess: That seems too complicated. We don't even have to code anything for this project. Let's just stick with the graph drawing and the matrix.",
+      "phase": null
+    },
+    {
+      "id": 13,
+      "context": "Jess: That's what I'm saying. Wolf row, deer column gets a 1 because wolves eat deer.\n\nAndy: Ohh, I see what you're saying now. I was thinking backwards.",
+      "text": "Jess: So I started filling in the adjacency matrix. What should we do next?\n\nAndy: I think we should try implementing one of those search algorithms. Maybe the breadth-first search to see how changes to one species would affect others?\n\nJess: That seems too complicated. We don't even have to code anything for this project. Let's just stick with the graph drawing and the matrix.\n\nAndy: But the cool part of graph theory is the algorithms! Without that, we're just drawing pictures and filling in tables.\n\nJess: Yeah, but we need to make sure we understand the basics first. I'm not even 100% confident about how the adjacency matrix works yet.",
+      "phase": null
+    },
+    {
+      "id": 14,
+      "context": "Jess: So I started filling in the adjacency matrix. What should we do next?\n\nAndy: I think we should try implementing one of those search algorithms. Maybe the breadth-first search to see how changes to one species would affect others?",
+      "text": "Jess: That seems too complicated. We don't even have to code anything for this project. Let's just stick with the graph drawing and the matrix.\n\nAndy: But the cool part of graph theory is the algorithms! Without that, we're just drawing pictures and filling in tables.\n\nJess: Yeah, but we need to make sure we understand the basics first. I'm not even 100% confident about how the adjacency matrix works yet.\n\nAndy: Fair enough. How about we finish the matrix first, and then if we have time, we can try a simple version of the algorithm?\n\nJess: Okay, that's reasonable. But let's not overcommit. The project requirements don't mention algorithms.",
+      "phase": null
+    },
+    {
+      "id": 15,
+      "context": "Jess: That seems too complicated. We don't even have to code anything for this project. Let's just stick with the graph drawing and the matrix.\n\nAndy: But the cool part of graph theory is the algorithms! Without that, we're just drawing pictures and filling in tables.",
+      "text": "Jess: Yeah, but we need to make sure we understand the basics first. I'm not even 100% confident about how the adjacency matrix works yet.\n\nAndy: Fair enough. How about we finish the matrix first, and then if we have time, we can try a simple version of the algorithm?\n\nJess: Okay, that's reasonable. But let's not overcommit. The project requirements don't mention algorithms.\n\nAndy: Oh, look at this in our matrix. The row for deer has only one 1 in it, but the column for deer has three 1s.\n\nJess: Wait, what does that mean?",
+      "phase": null
+    },
+    {
+      "id": 16,
+      "context": "Jess: Yeah, but we need to make sure we understand the basics first. I'm not even 100% confident about how the adjacency matrix works yet.\n\nAndy: Fair enough. How about we finish the matrix first, and then if we have time, we can try a simple version of the algorithm?",
+      "text": "Jess: Okay, that's reasonable. But let's not overcommit. The project requirements don't mention algorithms.\n\nAndy: Oh, look at this in our matrix. The row for deer has only one 1 in it, but the column for deer has three 1s.\n\nJess: Wait, what does that mean?\n\nAndy: Well, deer only eat one thing - grass. But deer get eaten by three different predators - wolves, foxes, and mountain lions.\n\nJess: Yeah, that makes sense. Herbivores usually eat fewer species than the number of predators that eat them.",
+      "phase": null
+    },
+    {
+      "id": 17,
+      "context": "Jess: Okay, that's reasonable. But let's not overcommit. The project requirements don't mention algorithms.\n\nAndy: Oh, look at this in our matrix. The row for deer has only one 1 in it, but the column for deer has three 1s.",
+      "text": "Jess: Wait, what does that mean?\n\nAndy: Well, deer only eat one thing - grass. But deer get eaten by three different predators - wolves, foxes, and mountain lions.\n\nJess: Yeah, that makes sense. Herbivores usually eat fewer species than the number of predators that eat them.\n\nAndy: I wonder if that's always true? Let me check our other herbivores... Rabbits eat one thing and get eaten by three things. Mice eat one thing and get eaten by three things too.\n\nJess: So it seems like a pattern in our food web. I wonder if ecologists use that kind of analysis?",
+      "phase": null
+    },
+    {
+      "id": 18,
+      "context": "Jess: Wait, what does that mean?\n\nAndy: Well, deer only eat one thing - grass. But deer get eaten by three different predators - wolves, foxes, and mountain lions.",
+      "text": "Jess: Yeah, that makes sense. Herbivores usually eat fewer species than the number of predators that eat them.\n\nAndy: I wonder if that's always true? Let me check our other herbivores... Rabbits eat one thing and get eaten by three things. Mice eat one thing and get eaten by three things too.\n\nJess: So it seems like a pattern in our food web. I wonder if ecologists use that kind of analysis?\n\nAndy: Maybe. It reminds me of that game I used to play where you manage an ecosystem. If you didn't have enough predators, the herbivores would overpopulate and eat all the plants.\n\nJess: Oh yeah, I played something similar. The matrix makes it easier to see those relationships.",
+      "phase": null
+    },
+    {
+      "id": 19,
+      "context": "Jess: Yeah, that makes sense. Herbivores usually eat fewer species than the number of predators that eat them.\n\nAndy: I wonder if that's always true? Let me check our other herbivores... Rabbits eat one thing and get eaten by three things. Mice eat one thing and get eaten by three things too.",
+      "text": "Jess: So it seems like a pattern in our food web. I wonder if ecologists use that kind of analysis?\n\nAndy: Maybe. It reminds me of that game I used to play where you manage an ecosystem. If you didn't have enough predators, the herbivores would overpopulate and eat all the plants.\n\nJess: Oh yeah, I played something similar. The matrix makes it easier to see those relationships.\n\nAndy: I'm trying to understand if there's a way to find indirect relationships in the food web. Like, do wolves indirectly affect grass?\n\nJess: Well, wolves eat deer, and deer eat grass. So wolves do indirectly affect grass by controlling the deer population.",
+      "phase": null
+    },
+    {
+      "id": 20,
+      "context": "Jess: So it seems like a pattern in our food web. I wonder if ecologists use that kind of analysis?\n\nAndy: Maybe. It reminds me of that game I used to play where you manage an ecosystem. If you didn't have enough predators, the herbivores would overpopulate and eat all the plants.",
+      "text": "Jess: Oh yeah, I played something similar. The matrix makes it easier to see those relationships.\n\nAndy: I'm trying to understand if there's a way to find indirect relationships in the food web. Like, do wolves indirectly affect grass?\n\nJess: Well, wolves eat deer, and deer eat grass. So wolves do indirectly affect grass by controlling the deer population.\n\nAndy: Right, so there's a path from wolves to grass through deer. But is there a way to find all these indirect paths mathematically?\n\nJess: I think it has something to do with matrix multiplication, but I'm not sure how it works exactly.",
+      "phase": null
+    },
+    {
+      "id": 21,
+      "context": "Jess: Oh yeah, I played something similar. The matrix makes it easier to see those relationships.\n\nAndy: I'm trying to understand if there's a way to find indirect relationships in the food web. Like, do wolves indirectly affect grass?",
+      "text": "Jess: Well, wolves eat deer, and deer eat grass. So wolves do indirectly affect grass by controlling the deer population.\n\nAndy: Right, so there's a path from wolves to grass through deer. But is there a way to find all these indirect paths mathematically?\n\nJess: I think it has something to do with matrix multiplication, but I'm not sure how it works exactly.\n\nAndy: Matrix multiplication? Like from algebra? How would that help?\n\nJess: I remember reading that if you multiply the adjacency matrix by itself, it shows which vertices can reach others in exactly two steps.",
+      "phase": null
+    },
+    {
+      "id": 22,
+      "context": "Jess: Well, wolves eat deer, and deer eat grass. So wolves do indirectly affect grass by controlling the deer population.\n\nAndy: Right, so there's a path from wolves to grass through deer. But is there a way to find all these indirect paths mathematically?",
+      "text": "Jess: I think it has something to do with matrix multiplication, but I'm not sure how it works exactly.\n\nAndy: Matrix multiplication? Like from algebra? How would that help?\n\nJess: I remember reading that if you multiply the adjacency matrix by itself, it shows which vertices can reach others in exactly two steps.\n\nAndy: That doesn't make any sense. How would multiplying numbers tell you about paths?\n\nJess: I'm not completely sure, to be honest. Let's try a simple example. If wolf → deer and deer → grass, then wolf → deer → grass is a two-step path.",
+      "phase": null
+    },
+    {
+      "id": 23,
+      "context": "Jess: I think it has something to do with matrix multiplication, but I'm not sure how it works exactly.\n\nAndy: Matrix multiplication? Like from algebra? How would that help?",
+      "text": "Jess: I remember reading that if you multiply the adjacency matrix by itself, it shows which vertices can reach others in exactly two steps.\n\nAndy: That doesn't make any sense. How would multiplying numbers tell you about paths?\n\nJess: I'm not completely sure, to be honest. Let's try a simple example. If wolf → deer and deer → grass, then wolf → deer → grass is a two-step path.\n\nAndy: I guess we could try it and see if it works? I'm skeptical though.\n\nAndy: You know what this reminds me of? I was playing this strategy game last night where you have to build roads between cities.",
+      "phase": null
+    },
+    {
+      "id": 24,
+      "context": "Jess: I remember reading that if you multiply the adjacency matrix by itself, it shows which vertices can reach others in exactly two steps.\n\nAndy: That doesn't make any sense. How would multiplying numbers tell you about paths?",
+      "text": "Jess: I'm not completely sure, to be honest. Let's try a simple example. If wolf → deer and deer → grass, then wolf → deer → grass is a two-step path.\n\nAndy: I guess we could try it and see if it works? I'm skeptical though.\n\nAndy: You know what this reminds me of? I was playing this strategy game last night where you have to build roads between cities.\n\nJess: Which game?\n\nAndy: It's called Empire Builder or something. You connect cities with roads, but you have limited resources, so you have to be strategic.",
+      "phase": null
+    },
+    {
+      "id": 25,
+      "context": "Jess: I'm not completely sure, to be honest. Let's try a simple example. If wolf → deer and deer → grass, then wolf → deer → grass is a two-step path.\n\nAndy: I guess we could try it and see if it works? I'm skeptical though.",
+      "text": "Andy: You know what this reminds me of? I was playing this strategy game last night where you have to build roads between cities.\n\nJess: Which game?\n\nAndy: It's called Empire Builder or something. You connect cities with roads, but you have limited resources, so you have to be strategic.\n\nJess: Oh, and you're basically creating a graph with your road network.\n\nAndy: Exactly! And I always struggle with it because I never know the best way to connect everything. I bet using some of these algorithms would help.",
+      "phase": null
+    },
+    {
+      "id": 26,
+      "context": "Andy: You know what this reminds me of? I was playing this strategy game last night where you have to build roads between cities.\n\nJess: Which game?",
+      "text": "Andy: It's called Empire Builder or something. You connect cities with roads, but you have limited resources, so you have to be strategic.\n\nJess: Oh, and you're basically creating a graph with your road network.\n\nAndy: Exactly! And I always struggle with it because I never know the best way to connect everything. I bet using some of these algorithms would help.\n\nJess: I'm taking that game design elective next semester. I wonder if we'll learn about this stuff.\n\nAndy: That would be cool. Imagine designing a game where players have to solve graph theory problems without realizing it.",
+      "phase": null
+    },
+    {
+      "id": 27,
+      "context": "Andy: It's called Empire Builder or something. You connect cities with roads, but you have limited resources, so you have to be strategic.\n\nJess: Oh, and you're basically creating a graph with your road network.",
+      "text": "Andy: Exactly! And I always struggle with it because I never know the best way to connect everything. I bet using some of these algorithms would help.\n\nJess: I'm taking that game design elective next semester. I wonder if we'll learn about this stuff.\n\nAndy: That would be cool. Imagine designing a game where players have to solve graph theory problems without realizing it.\n\nJess: Like a puzzle game where you have to figure out the optimal routes or connections? I might actually use that idea for my final project.\n\nJess: This kind of reminds me of social networks too. Like how Instagram suggests people you might know.",
+      "phase": null
+    },
+    {
+      "id": 28,
+      "context": "Andy: Exactly! And I always struggle with it because I never know the best way to connect everything. I bet using some of these algorithms would help.\n\nJess: I'm taking that game design elective next semester. I wonder if we'll learn about this stuff.",
+      "text": "Andy: That would be cool. Imagine designing a game where players have to solve graph theory problems without realizing it.\n\nJess: Like a puzzle game where you have to figure out the optimal routes or connections? I might actually use that idea for my final project.\n\nJess: This kind of reminds me of social networks too. Like how Instagram suggests people you might know.\n\nAndy: Yeah, I guess people would be vertices and friendships would be edges.\n\nJess: And when they suggest \"people you might know,\" they're probably finding vertices that are two steps away from you.",
+      "phase": null
+    },
+    {
+      "id": 29,
+      "context": "Andy: That would be cool. Imagine designing a game where players have to solve graph theory problems without realizing it.\n\nJess: Like a puzzle game where you have to figure out the optimal routes or connections? I might actually use that idea for my final project.",
+      "text": "Jess: This kind of reminds me of social networks too. Like how Instagram suggests people you might know.\n\nAndy: Yeah, I guess people would be vertices and friendships would be edges.\n\nJess: And when they suggest \"people you might know,\" they're probably finding vertices that are two steps away from you.\n\nAndy: So if you and I have five friends in common, but aren't friends with each other, the algorithm would suggest us?\n\nJess: Probably. It's finding potential edges to add to the network.",
+      "phase": null
+    },
+    {
+      "id": 30,
+      "context": "Jess: This kind of reminds me of social networks too. Like how Instagram suggests people you might know.\n\nAndy: Yeah, I guess people would be vertices and friendships would be edges.",
+      "text": "Jess: And when they suggest \"people you might know,\" they're probably finding vertices that are two steps away from you.\n\nAndy: So if you and I have five friends in common, but aren't friends with each other, the algorithm would suggest us?\n\nJess: Probably. It's finding potential edges to add to the network.\n\nAndy: I wonder if they use the same kind of adjacency matrix we're making. But I guess their matrix would be enormous with millions of users.\n\nJess: They must use some special algorithms to handle that scale. Our little food web is tiny compared to that.",
+      "phase": null
+    },
+    {
+      "id": 31,
+      "context": "Jess: And when they suggest \"people you might know,\" they're probably finding vertices that are two steps away from you.\n\nAndy: So if you and I have five friends in common, but aren't friends with each other, the algorithm would suggest us?",
+      "text": "Jess: Probably. It's finding potential edges to add to the network.\n\nAndy: I wonder if they use the same kind of adjacency matrix we're making. But I guess their matrix would be enormous with millions of users.\n\nJess: They must use some special algorithms to handle that scale. Our little food web is tiny compared to that.\n\nJess: I think our food web drawing is getting too messy. There are too many crossing edges.\n\nAndy: Yeah, it's hard to read. What if we rearrange it?",
+      "phase": null
+    },
+    {
+      "id": 32,
+      "context": "Jess: Probably. It's finding potential edges to add to the network.\n\nAndy: I wonder if they use the same kind of adjacency matrix we're making. But I guess their matrix would be enormous with millions of users.",
+      "text": "Jess: They must use some special algorithms to handle that scale. Our little food web is tiny compared to that.\n\nJess: I think our food web drawing is getting too messy. There are too many crossing edges.\n\nAndy: Yeah, it's hard to read. What if we rearrange it?\n\nJess: I was thinking we could just use a circle layout. Put all the species in a circle around the edge.\n\nAndy: That would be even worse! Then almost every edge would have to cross through the middle.",
+      "phase": null
+    },
+    {
+      "id": 33,
+      "context": "Jess: They must use some special algorithms to handle that scale. Our little food web is tiny compared to that.\n\nJess: I think our food web drawing is getting too messy. There are too many crossing edges.",
+      "text": "Andy: Yeah, it's hard to read. What if we rearrange it?\n\nJess: I was thinking we could just use a circle layout. Put all the species in a circle around the edge.\n\nAndy: That would be even worse! Then almost every edge would have to cross through the middle.\n\nJess: Not necessarily. We could arrange them so related species are next to each other.\n\nAndy: I still think the hierarchical layout is better. Plants at the bottom, then herbivores, then predators. It's more intuitive.",
+      "phase": null
+    },
+    {
+      "id": 34,
+      "context": "Andy: Yeah, it's hard to read. What if we rearrange it?\n\nJess: I was thinking we could just use a circle layout. Put all the species in a circle around the edge.",
+      "text": "Andy: That would be even worse! Then almost every edge would have to cross through the middle.\n\nJess: Not necessarily. We could arrange them so related species are next to each other.\n\nAndy: I still think the hierarchical layout is better. Plants at the bottom, then herbivores, then predators. It's more intuitive.\n\nJess: Let's try both and see which one looks better.\n\nAndy: I guess, but I bet the hierarchy will be clearer. The circle might look cool but it won't show the food chain as well.",
+      "phase": null
+    },
+    {
+      "id": 35,
+      "context": "Andy: That would be even worse! Then almost every edge would have to cross through the middle.\n\nJess: Not necessarily. We could arrange them so related species are next to each other.",
+      "text": "Andy: I still think the hierarchical layout is better. Plants at the bottom, then herbivores, then predators. It's more intuitive.\n\nJess: Let's try both and see which one looks better.\n\nAndy: I guess, but I bet the hierarchy will be clearer. The circle might look cool but it won't show the food chain as well.\n\nJess: I think our food web project is coming along well. We've got the visualization and the adjacency matrix done.\n\nAndy: Maybe we could add a short explanation of how removing one species would affect the network? We don't have to code it, just explain the concept.",
+      "phase": null
+    }
+  ]
+}

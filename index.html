@@ -358,7 +358,7 @@
 
     <script>// CONFIGURATION - Replace with actual data
 
-        const TOTAL_SLICES_TO_SHOW = 3; // Adjust based on your needs
+        const TOTAL_SLICES_TO_SHOW = 15; // Adjust based on your needs
         const USE_RANDOM_SELECTION = true;
         const BALANCE_SELECTION_LOAD = true; // Use load balancing
 
@@ -378,7 +378,7 @@
         // Load slices from external file
         async function loadSlicesFromFile() {
             try {
-                const response = await fetch('conversation_slices.json');
+                const response = await fetch('conversation_slices_2party.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
