@@ -210,14 +210,14 @@
     <div id="studyContainer">
         <div class="instructions">
             <h3>Instructions</h3>
-            <p>You'll be analyzing slices of conversation to identify different types of curiosity. For each section:</p>
+            <p>You'll be analyzing 15 short slices of conversation to identify different types of curiosity. For each section:</p>
             <ol>
                 <li>Read the conversation segment carefully</li>
                 <li>Determine if curiosity is present</li>
                 <li>If present, identify the type and intensity of curiosity</li>
                 <li>Answer additional questions about interaction patterns</li>
             </ol>
-            <p>Please take your time and provide thoughtful responses. Your careful analysis is important to our research.</p>
+            <p>Thank you for providing thoughtful responses. Your careful analysis is important to our research.</p>
         </div>
 
         <div class="definitions">
@@ -378,7 +378,7 @@
         // Load slices from external file
         async function loadSlicesFromFile() {
             try {
-                const response = await fetch('conversation_slices_2party.json');
+                const response = await fetch('conv_slices_03.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
