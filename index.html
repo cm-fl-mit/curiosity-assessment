@@ -516,11 +516,12 @@
 
         // Load a specific slice
         function loadSlice(index) {
-            // Update progress bar
-            const progress = ((index + 1) / slices.length) * 100;
+            // Update progress bar - FIXED
+            const progress = ((index + 1) / selectedSliceIndices.length) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
 
-            const slice = slices[index];
+            const sliceId = selectedSliceIndices[index];
+            const slice = slices[sliceId];
             let html = '';
 
             if (slice.context) {
